@@ -19,8 +19,8 @@ export default class ProfileComponent extends React.Component<ProfileProps>
           />
         </View>
         <View>
-          <Text style={styles.welcomeText}>Welcome,</Text>
-          <Text style={styles.nameText}>{this.props.gender==="M" ? "Mr." : "Mrs."} Jeho Sweg</Text>
+          <Text style={styles.welcomeText}>{this.props.gender==="M" ? "Mr." : "Mrs."}</Text>
+          <Text style={styles.nameText}>Jeho Sweg</Text>
         </View>
       </View>
     );
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     fontFamily:'product-sans-bold',
     fontSize:40,
     paddingBottom: 15,
-    textAlign:'center'
+    textAlign:'center',
+    letterSpacing: 0.3
   },
 })

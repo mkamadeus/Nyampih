@@ -4,8 +4,8 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
-import UserNavbar from './src/components/partials/UserNavbar';
-import UserHomeScreen from './src/screens/user/UserHomeScreen';
+import UserNavbar from './src/components/partials/CollectorNavbar';
+import UserHomeScreen from './src/screens/collector/CollectorHomeScreen';
 
 const Stack = createStackNavigator();
 
@@ -36,8 +36,9 @@ export default function App() {
           name="Home"
           component={UserHomeScreen} 
           options = {{
-            title:'My Home',
-            headerTitle: props => <UserNavbar {...props} />,
+            headerTitle: props => (
+                <UserNavbar {...props} />
+            ),
           }}
         />
       </Stack.Navigator>
