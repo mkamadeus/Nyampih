@@ -6,8 +6,9 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import UserNavbar from './src/components/partials/UserNavbar';
 import UserHomeScreen from './src/screens/user/UserHomeScreen';
-
-import RegisFormScreen from './src/screens/register/RegistrationFormScreen'
+import RegisFormScreen from './src/screens/registration/RegistrationFormScreen'
+import LoginScreeen from './src/screens/login/LoginScreen'
+import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 
@@ -32,16 +33,8 @@ export default function App() {
   }
   
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen 
-          name="Home"
-          component={RegisFormScreen} 
-          options = {{
-            title:'My Home',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{flex:1}}>
+      <LoginScreeen/>
+    </View>
   );
 };

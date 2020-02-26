@@ -1,10 +1,7 @@
 import React, { Children } from 'react';
 import { 
-  ScrollView,
   Text,
   View, 
-  KeyboardAvoidingView, 
-  StyleSheet,
   Picker
 } from 'react-native';
 
@@ -23,7 +20,7 @@ const CustomPicker = (props) => {
             mode={props.mode}
             onValueChange={(itemVal) =>props.valChange(itemVal)}
           >
-            <Picker.Item label='Cafe' value='Cafe' />
+            <Picker.Item label='Cafe' value='Cafe'/>
             <Picker.Item label='Restoran' value='Restoran' />
             <Picker.Item label='Rumah' value='Rumah' />
             <Picker.Item label='Lainnya' value='Lainnya' />

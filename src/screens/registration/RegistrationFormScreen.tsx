@@ -5,13 +5,15 @@ import {
   View, 
   KeyboardAvoidingView, 
   StyleSheet,
-  Picker
+  TouchableOpacity,
 } from 'react-native';
 
-import CustomForm from './Form'
-import CustomPicker from './CustomPicker'
-import styles from './Form'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import ImagePicker from 'react-native-image-picker'
+
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+
+import CustomForm from '../../components/partials/Form'
+import CustomPicker from '../../components/partials/CustomPicker'
 
 export default class RegisFormScreen extends React.Component {
   state = {
@@ -22,24 +24,25 @@ export default class RegisFormScreen extends React.Component {
     instance : '-Pilih-',
   }
 
-
-
   render () {
     let pickerVal
     return  (
       <ScrollView style={style.Container}>
         <KeyboardAvoidingView behavior='position'>
         <View>
-          <Text style={style.mediumText}>Formulir</Text>
-          <Text style={style.mediumText}>Registrasi</Text>
+          <Text style={[style.mediumText,{fontWeight:'bold'}]}>Formulir</Text>
+          <Text style={[style.mediumText,{fontWeight:'bold'}]}>Registrasi</Text>
         </View>
         
         <View style={style.formContainer}>
-
-          <View style={style.profilePictCont}>
-            <View style={style.profilePict}></View>
-          </View>
-
+          <TouchableOpacity
+            style={style.profilePictCont}
+          >
+              <View style={style.profilePict}>
+                <MaterialIcons name='add-a-photo' size={70} color='#a3a3a3'/>
+              </View>
+          </TouchableOpacity>
+            
             <CustomForm 
               Text='Nama Lengkap'
               keyType='default'
@@ -82,10 +85,17 @@ export default class RegisFormScreen extends React.Component {
             </View>        
           </KeyboardAvoidingView>
 
-          <TouchableOpacity style={{height : 140}}>
-          <View style={style.button}>
-            <View style={style.sampleButton}></View>
-          </View>
+          <TouchableOpacity 
+          onPress={()=>{}}
+          style={{height : 100, justifyContent : 'center',alignContent:'center'}}>
+            <View 
+            style={[style.button,
+            {
+            position : 'relative',
+            top : -30,
+            left : 260}]}>
+              <Ionicons name="ios-arrow-forward" size={70}  style={style.icon} />
+            </View>
           </TouchableOpacity>
       </ScrollView>
     )
@@ -96,7 +106,7 @@ const style = StyleSheet.create ({
   Container : {
     flex :1,
     padding : 10,
-    backgroundColor : '#FFF',
+    backgroundColor : '#fff',
   },
   formContainer : {
     flex :1,
@@ -113,23 +123,26 @@ const style = StyleSheet.create ({
     width : 150,
     height : 150,
     borderRadius : 75,
-    backgroundColor : 'yellow'
+    elevation : 4,
+    backgroundColor : '#F3F3F3',
+    justifyContent : 'center',
+    alignItems : 'center'
   }, 
   mediumText : {
     fontSize : 38,
   },
   button : {
+    justifyContent:'center',
+    alignContent : 'center',
     marginTop : 40,
-    position : 'relative',
-    top : -30,
-    left : 120,
+    backgroundColor : '#f3f3f3',
     flexDirection : 'row',
-    alignSelf : 'center' 
+    height : 70,
+    width : 70,
+    borderRadius : 35,
+    elevation : 4,
   },
-  sampleButton : {
-    width : 100,
-    height : 100,
-    borderRadius : 50,
-    backgroundColor : 'yellow'
+  icon : {
+    color : '#FC5667',
   }
 })

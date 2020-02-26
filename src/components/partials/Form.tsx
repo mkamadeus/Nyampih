@@ -2,7 +2,6 @@ import React from 'react'
 import { 
   View, 
   StyleSheet, 
-  KeyboardAvoidingView, 
   TextInput, 
   Text 
 } from 'react-native'
@@ -46,12 +45,15 @@ export const styles = StyleSheet.create({
   titleText :{ 
     fontSize : 26,
     color : '#fdd800',
+    fontFamily: 'product-sans-bold',
   },
   formArea : {
     height : 40,
+    fontFamily: 'product-sans-bold',
   },
   childContainer : {
     fontSize : 26,
+    fontFamily: 'product-sans-bold',
   }
 })
 
