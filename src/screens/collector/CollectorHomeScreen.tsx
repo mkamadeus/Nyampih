@@ -3,7 +3,7 @@ import {View, Text, StyleSheet,  ScrollView, Image} from 'react-native';
 import ProfileComponent from '../../components/collector/dashboard/ProfileComponent';
 import ProfileBanner from '../../components/collector/dashboard/ProfileBanner'
 
-export default class UserHomeScreen extends React.Component
+export default class CollectorHomeScreen extends React.Component
 {
 
   render() {

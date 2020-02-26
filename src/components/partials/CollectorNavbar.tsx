@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default class UserNavbar extends React.Component
+export default class CollectorNavbar extends React.Component
 {
   render() {
     return( 
