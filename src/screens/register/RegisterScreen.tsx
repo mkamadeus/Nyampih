@@ -1,4 +1,6 @@
 import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { 
   View, 
   Text,
@@ -14,24 +16,16 @@ import LoginForm from '../../components/login/LoginForm'
 
 export default class LoginScreen extends React.Component {
 
-  state ={
-    email : '',
-    password : '',
+  state = {
+    email:'',
+    password:'',
+    rePass:'',
   }
-
-
 
   render (){
     return (
-      <ScrollView style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image 
-            source={require('../../../assets/images/logo.png')}
-            style={styles.logo}
-          />
-        </View>
+      <View style={styles.registerContainer}>
         <KeyboardAvoidingView behavior='position' style={styles.formsContainer}>
-
           <LoginForm
             text='EMAIL'
             mode='email-address'
@@ -46,24 +40,30 @@ export default class LoginScreen extends React.Component {
             value={this.state.password}
             placeholder='Password'
             onChange={ (itemval)=>this.setState({password:itemval}) }
+          />        
+
+          <LoginForm
+            text='PASSWORD'
+            mode='password'
+            value={this.state.rePass}
+            placeholder='Retype Password'
+            onChange={ (itemval)=>this.setState({rePass:itemval}) }
           />
-          
         </KeyboardAvoidingView>
-        <TouchableOpacity style={styles.loginButton} activeOpacity={0.7}>
+
+
+        <TouchableOpacity 
+          style={styles.loginButton} 
+          activeOpacity={0.7}
+          onPress={() => this.props.onPressButton()}
+          >
           <View >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Register</Text>
           </View>
         </TouchableOpacity>
 
-        <View style={styles.textContainer}>
-          <Text style={styles.whiteText}>Not Registered ? </Text>
-          <TouchableOpacity
-            onPress={()=>this.props.onPressButton()}
-          > 
-            <Text style={styles.whiteText}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+      </View>
     )
   }
+
 }

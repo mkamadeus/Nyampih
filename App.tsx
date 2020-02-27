@@ -1,16 +1,20 @@
-import 'react-native-gesture-handler';
-import * as React from 'react';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
-import UserNavbar from './src/components/partials/UserNavbar';
-import UserHomeScreen from './src/screens/user/UserHomeScreen';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import 'react-native-gesture-handler'
+import * as Font from 'expo-font'
+import { AppLoading } from 'expo'
+
+import UserNavbar from './src/components/partials/UserNavbar'
+import UserHomeScreen from './src/screens/user/UserHomeScreen'
 import RegisFormScreen from './src/screens/registration/RegistrationFormScreen'
 import LoginScreeen from './src/screens/login/LoginScreen'
-import { View } from 'react-native';
+import RegisterScreen from './src/screens/register/RegisterScreen'
+import ProfileScreen from './src/screens/profile/ProfileScreen'
 
-const Stack = createStackNavigator();
+import { View, Switch } from 'react-native';
+
+
 
 const fetchFont = () => {
   return Font.loadAsync({
@@ -18,6 +22,45 @@ const fetchFont = () => {
     'product-sans-medium' : require('./assets/fonts/ProductSans-Medium.ttf'),
     'product-sans-bold' : require('./assets/fonts/ProductSans-Bold.ttf'),
   })
+}
+
+const Stack = createStackNavigator();
+
+function LoginRegister() {
+  return (
+    <Stack.Navigator
+      initialRouteName = 'Login'
+      headerMode = 'none'
+    >
+      <Stack.Screen 
+        name='Login'
+        component={LoginScreenRoute}
+      />
+      <Stack.Screen
+        name='Register'
+        component={RegisterScreenRoute}
+      />
+    </Stack.Navigator>
+  )
+}
+
+function LoginScreenRoute({ navigation }) {
+  return (
+    <LoginScreeen onPressButton={()=>navigation.navigate('LoginRegister',{screen : 'Register'})} />
+  )
+}
+
+function RegisterScreenRoute ({ navigation }) {
+  return (
+    <RegisterScreen onPressButton={()=>navigation.navigate('RegistrationForm')}/>
+  )
+}
+
+function RegisFormScreenRoute ({ navigation }) {
+  let formState
+  return (
+    <RegisFormScreen onPressButton={()=>navigation.navigate('Profile')}/>
+  )
 }
 
 export default function App() {
@@ -32,9 +75,30 @@ export default function App() {
     );
   }
   
-  return (
-    <View style={{flex:1}}>
-      <LoginScreeen/>
-    </View>
-  );
-};
+    return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName = 'LoginRegister'
+        headerMode = 'screen' 
+      >
+        <Stack.Screen 
+          name='LoginRegister'
+          component={LoginRegister}
+          options={{
+            headerShown : false,
+          }} 
+        />
+        <Stack.Screen
+          name='RegistrationForm'
+          title='Formulir Registrasi'
+          component={RegisFormScreenRoute}
+        />
+        <Stack.Screen
+          name='Profile'
+          title='Profile'
+          component={ProfileScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
+}

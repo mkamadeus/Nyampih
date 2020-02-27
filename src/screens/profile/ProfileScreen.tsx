@@ -30,8 +30,8 @@ export default class RegisFormScreen extends React.Component {
       <ScrollView style={style.Container}>
         <KeyboardAvoidingView behavior='position'>
         <View>
-          <Text style={[style.mediumText,{fontWeight:'bold'}]}>Formulir</Text>
-          <Text style={[style.mediumText,{fontWeight:'bold'}]}>Registrasi</Text>
+          <Text style={[style.mediumText,{fontWeight:'bold'}]}>Halaman</Text>
+          <Text style={[style.mediumText,{fontWeight:'bold'}]}>Profile</Text>
         </View>
         
         <View style={style.formContainer}>
@@ -39,7 +39,7 @@ export default class RegisFormScreen extends React.Component {
             style={style.profilePictCont}
           >
               <View style={style.profilePict}>
-                <MaterialIcons name='add-a-photo' size={70} color='#a3a3a3'/>
+                <MaterialIcons name='person' size={70} color='#a3a3a3'/>
               </View>
           </TouchableOpacity>
             
@@ -50,15 +50,7 @@ export default class RegisFormScreen extends React.Component {
               onChange = { (itemVal) => this.setState({fullName:itemVal})}
               placeholder ='Nama Lengkap'
             />
-
-            <CustomForm
-              Text='Tanggal Lahir'
-              keyType='numeric'
-              value = {this.state.dateBirth}
-              onChange = { (itemVal) => this.setState({dateBirth:itemVal})}
-              placeholder ='HH-MM-YY'
-            />
-
+            
             <CustomForm
             Text='Nomor Telepon'
             keyType='numeric'
@@ -74,19 +66,11 @@ export default class RegisFormScreen extends React.Component {
               onChange = { (itemVal) => this.setState({adress:itemVal})}
               placeholder ='Alamat'
             />
-
-            <CustomPicker 
-              Text='Instansi'
-              value={this.state.instance}
-              label={['Kafe','Restoran','Rumah','Lainnya']}//kalo punya cara buat ngefor biar dinamic
-              mode = 'dialog'
-              valChange = {(itemVal)=>this.setState({instance:itemVal })}
-            />           
             </View>        
           </KeyboardAvoidingView>
 
           <TouchableOpacity 
-          onPress={()=>{this.props.onPressButton()}}
+          onPress={()=>{}}
           style={{height : 100, justifyContent : 'center',alignContent:'center'}}>
             <View 
             style={[style.button,

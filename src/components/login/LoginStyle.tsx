@@ -7,6 +7,12 @@ const styles = StyleSheet.create ({
     backgroundColor : '#07CBC9',
     paddingTop : StatusBar.currentHeight,
   },
+  registerContainer : {
+    flex : 1,
+    justifyContent : 'center',
+    backgroundColor : '#07CBC9',
+    paddingTop : StatusBar.currentHeight,
+  },
   logoContainer : {
     width : 200,
     height : 200,
