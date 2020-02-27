@@ -1,15 +1,43 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export default class UserHomeScreen extends React.Component
+interface UserHomeProps {
+
+}
+
+interface UserHomeState {
+  mainColor: string;
+  sizeState: number[];
+  currentState: number;
+}
+export default class UserHomeScreen extends React.Component<UserHomeProps, UserHomeState>
 {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      mainColor: '#FC5667',
+      currentState: 0,
+    }
+  }
+
   render() 
   {
+    let {mainColor, sizeState, currentState} = this.state;
+
+    const colorModes = ['#FC5667', '#07CBC9', '#FDD800'];
+    const typeTexts = ['PAPER/CARDBOARD', 'FOOD WASTE', 'PLASTIC BAGS'];
+    const sizeStates = [
+      [1.5,1,1],
+      [1,1.5,1],
+      [1,1,1.5],
+    ];
+
     return (
       <ScrollView style={{flex:1}}>
         <View style={styles.contentContainer}>
-          <View style={styles.jumbotron}>
+          <View style={[styles.jumbotron,{backgroundColor:mainColor}]}>
             <View style={{flex:0.8,justifyContent:'center',padding:5}}>
               <Text style={{fontFamily: 'product-sans-bold',color:'#fff',fontSize:25}}>Home</Text>
             </View>
@@ -27,6 +55,29 @@ export default class UserHomeScreen extends React.Component
               </View>
             </View>
           </View>
+          <View style={{flex:1,flexDirection:'row',padding:20}}>
+            <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+              <View style={{flex:sizeStates[currentState][0],backgroundColor:'red',aspectRatio:1,alignItems:'center',justifyContent:'center',margin:5,borderRadius:500}}>
+
+              </View>
+              <View style={{flex:sizeStates[currentState][1],backgroundColor:'purple',aspectRatio:1,alignItems:'center',justifyContent:'center',margin:5,borderRadius:500}}>
+                <Text>lol</Text>
+              </View>
+              <View style={{flex:sizeStates[currentState][2],backgroundColor:'green',aspectRatio:1,alignItems:'center',justifyContent:'center',margin:5,borderRadius:500}}>
+                <Text>lol</Text>
+              </View>
+            </View>
+          </View>
+          <View>
+            <Button title="next" onPress={()=>{
+              let i = currentState+1;
+              this.setState({currentState: i,sizeState: sizeStates[i]});
+            }} />
+            <Button title="prev" onPress={()=>{
+              let i = currentState-1;
+              this.setState({currentState: i,sizeState: sizeStates[i]});
+            }} />
+          </View>
         </View>
       </ScrollView>
     );
@@ -42,7 +93,6 @@ const styles = StyleSheet.create({
   jumbotron: {
     flex:1,
     width:'100%',
-    backgroundColor: '#FC5667',
     alignContent:'center',
     justifyContent:'center',
     height:400,

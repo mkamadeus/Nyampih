@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
+import { View } from 'react-native';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import * as Font from 'expo-font';
@@ -37,9 +38,9 @@ export default function App() {
           name="UserHome"
           component = {UserHomeScreen}
           options = {{
-            headerTitle: props => (
-                <CollectorNavbar {...props} />
-            ),
+            headerShown:false,
+            headerStatusBarHeight: -40,
+            headerTitle: () => (<View style={{height:800,width:'100%',backgroundColor:'green'}} />),
           }}
         />
         <Stack.Screen 
