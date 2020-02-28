@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -14,6 +15,18 @@ import ProfileScreen from './src/screens/profile/ProfileScreen'
 
 import { View, Switch } from 'react-native';
 
+=======
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { View } from 'react-native';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import * as Font from 'expo-font';
+import { AppLoading } from 'expo';
+import CollectorNavbar from './src/components/partials/CollectorNavbar';
+import CollectorHomeScreen from './src/screens/collector/CollectorHomeScreen';
+import UserHomeScreen from './src/screens/user/UserHomeScreen';
+>>>>>>> f/user-dashboard
 
 
 const fetchFont = () => {
@@ -77,6 +90,7 @@ export default function App() {
   
     return (
     <NavigationContainer>
+<<<<<<< HEAD
       <Stack.Navigator
         initialRouteName = 'LoginRegister'
         headerMode = 'screen' 
@@ -97,7 +111,27 @@ export default function App() {
           name='Profile'
           title='Profile'
           component={ProfileScreen}
+=======
+      <Stack.Navigator initialRouteName="UserHome">
+        <Stack.Screen
+          name="UserHome"
+          component = {UserHomeScreen}
+          options = {{
+            headerShown:false,
+            headerStatusBarHeight: -40,
+            headerTitle: () => (<View style={{height:800,width:'100%',backgroundColor:'green'}} />),
+          }}
+>>>>>>> f/user-dashboard
         />
+        <Stack.Screen 
+          name="CollectorHome"
+          component={CollectorHomeScreen} 
+          options = {{
+            headerTitle: props => (
+                <CollectorNavbar {...props} />
+            ),
+          }}
+          />
       </Stack.Navigator>
     </NavigationContainer>
   )

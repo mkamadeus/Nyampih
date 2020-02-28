@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 interface BannerProps {
   bannerColor: string,
   iconContainer: string,
+  iconName: string,
   iconColor: string,
   titleText: string,
   amount: number,
@@ -20,12 +21,12 @@ export default class ProfileBanner extends React.Component<BannerProps, BannerSt
 
   render()
   {
-    const {titleText, bannerColor, iconContainer, iconColor, amount, lore} = this.props;
+    const {titleText, bannerColor, iconContainer, iconName, iconColor, amount, lore} = this.props;
 
     return (
       <View style={[styles.bannerContainer, {backgroundColor: bannerColor}]}>
         <View style={[styles.iconContainer, {backgroundColor: iconContainer}]}>
-          <Ionicons name="md-trash" size={60} style={{color: iconColor}} />
+          <Ionicons name={iconName} size={60} style={{color: iconColor}} />
         </View>
         <View style={styles.verdictContainer}>
           <Text style={styles.titleText}>{titleText}</Text>
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
   },
   kgText: {
     fontFamily: 'product-sans-bold',
-    width:45,
+    width:55,
     textAlign:'right',
     color:'#fff',
     paddingHorizontal: 1
