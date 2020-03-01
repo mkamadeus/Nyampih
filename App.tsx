@@ -48,7 +48,10 @@ function LoginRegister() {
 
 function LoginScreenRoute({ navigation }) {
   return (
-    <LoginScreeen onPressButton={()=>navigation.navigate('LoginRegister',{screen : 'Register'})} />
+    <LoginScreeen 
+      onPressButton={()=>navigation.navigate('LoginRegister',{screen : 'Register'})}
+      onLogin={()=>navigation.navigate('CollectorHome')}
+      />
   )
 }
 
@@ -133,8 +136,6 @@ export default function App() {
             ),
           }}
           />
-<<<<<<< HEAD
-=======
           <Stack.Screen
             name="UserHomeScreen"
             component={UserHomeScreen}
@@ -147,7 +148,6 @@ export default function App() {
             name="TransactionScreen"
             component={TransactionScreen}
           />
->>>>>>> f/user-transaction
       </Stack.Navigator>
     </NavigationContainer>
   )
