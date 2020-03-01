@@ -14,6 +14,7 @@ import RegisterScreen from './src/screens/register/RegisterScreen'
 import ProfileScreen from './src/screens/profile/ProfileScreen'
 
 import { View, Switch } from 'react-native';
+import TransactionScreen from './src/screens/user/TransactionScreen'
 
 
 
@@ -79,7 +80,7 @@ export default function App() {
     return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName = 'UserHomeScreen'
+        initialRouteName = 'TransactionScreen'
         headerMode = 'screen' 
       >
         <Stack.Screen 
@@ -111,6 +112,14 @@ export default function App() {
           <Stack.Screen
             name="UserHomeScreen"
             component={UserHomeScreen}
+            options = {{
+              headerTransparent: true,
+              headerTitle: '',
+            }}
+          />
+          <Stack.Screen
+            name="TransactionScreen"
+            component={TransactionScreen}
           />
       </Stack.Navigator>
     </NavigationContainer>
