@@ -59,9 +59,22 @@ function RegisterScreenRoute ({ navigation }) {
 function RegisFormScreenRoute ({ navigation }) {
   let formState
   return (
-    <RegisFormScreen onPressButton={()=>navigation.navigate('Profile')}/>
+    <RegisFormScreen onPressButton={(itemState)=>navigation.navigate('ProfileScreen',itemState)}/>
   )
 }
+
+function ProfileRoute ({ navigation, route }) {
+  return (
+    <ProfileScreen stateForm={route.params} onPressButton={()=>navigation.navigate('HomeScreen')}/>
+  )
+}
+
+function HomeRoute ({ navigation, route }) {
+  return (
+    <UserHomeScreen/>
+  )
+}
+
 
 export default function App() {
   const [dataLoaded, setDataLoaded] = React.useState(false);
@@ -90,13 +103,24 @@ export default function App() {
         />
         <Stack.Screen
           name='RegistrationForm'
-          title='Formulir Registrasi'
+          options={{
+            headerTitle :'Formulir Registrasi'
+          }}
           component={RegisFormScreenRoute}
         />
         <Stack.Screen
-          name='Profile'
-          title='Profile'
-          component={ProfileScreen}
+          name='ProfileScreen'
+          options={{
+            headerTitle :'Profile'
+          }}
+          component={ProfileRoute}
+        />
+        <Stack.Screen
+          name='HomeScreen'
+          options={{
+            headerTitle :'Home'
+          }}
+          component={HomeRoute}
         />
       </Stack.Navigator>
     </NavigationContainer>

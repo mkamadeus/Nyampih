@@ -15,11 +15,12 @@ const CustomForm = (props) => {
         <Text style={styles.titleText}>{props.Text}</Text>
         <View style = {styles.formBox}>
           <TextInput
-            style = {styles.formArea}
+            style = {[styles.formArea,{textAlign: props.align}]}
             keyboardType = {props.keyType} 
             value = {props.value}
             onChangeText = {(itemVal) => props.onChange(itemVal)}
             placeholder = {props.placeholder}
+            editable = {props.edit}
           />
         </View>
       </View>

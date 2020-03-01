@@ -14,16 +14,15 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 import CustomForm from '../../components/partials/Form'
 import CustomPicker from '../../components/partials/CustomPicker'
+import { BaseRouter } from '@react-navigation/native';
 
-export default class RegisFormScreen extends React.Component {
+export default class Profile extends React.Component {
   state = {
-    fullName : '',
-    dateBirth : '',
-    phone : '',
-    adress : '',
-    instance : '-Pilih-',
+    fullName : this.props.stateForm.fullName,
+    phone : this.props.stateForm.phone,
+    address : this.props.stateForm.address,
   }
-
+  
   render () {
     let pickerVal
     return  (
@@ -45,32 +44,29 @@ export default class RegisFormScreen extends React.Component {
             
             <CustomForm 
               Text='Nama Lengkap'
-              keyType='default'
               value = {this.state.fullName}
-              onChange = { (itemVal) => this.setState({fullName:itemVal})}
-              placeholder ='Nama Lengkap'
+              edit={false}
+              align='center'
             />
             
             <CustomForm
             Text='Nomor Telepon'
-            keyType='numeric'
             value = {this.state.phone}
-            onChange = { (itemVal) => this.setState({phone:itemVal})}
-            placeholder ='Nomor Telepon'
+            edit={false}
+            align='center'
             />
 
             <CustomForm
               Text='Alamat'
-              keyType='default'
-              value = {this.state.adress}
-              onChange = { (itemVal) => this.setState({adress:itemVal})}
-              placeholder ='Alamat'
+              value = {this.state.address}
+              edit={false}
+              align='center'
             />
             </View>        
           </KeyboardAvoidingView>
 
           <TouchableOpacity 
-          onPress={()=>{}}
+          onPress={()=>{this.props.onPressButton()}}
           style={{height : 100, justifyContent : 'center',alignContent:'center'}}>
             <View 
             style={[style.button,

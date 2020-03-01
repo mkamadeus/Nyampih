@@ -30,6 +30,7 @@ const styles = StyleSheet.create ({
   formArea : {
     alignSelf : 'center',
     padding: 10,
+    textAlign : 'center',
     fontFamily : 'product-sans-medium',
     fontSize : 16,
   },
