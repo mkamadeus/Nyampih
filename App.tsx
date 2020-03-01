@@ -41,8 +41,16 @@ function UserScreen() {
         component={UserTransactionScreenRoute}
       />
     </Stack.Navigator>
-  );
+  )
 }
+
+function LoginScreenRoute({ navigation }) {
+  return (
+    <LoginScreeen 
+      onPressButton={()=>navigation.navigate('LoginRegister',{screen : 'Register'})}
+      onLogin={()=>navigation.navigate('CollectorHome')}
+      />
+  )}
 
 function UserHomeScreenRoute ({navigation, route})
 {
@@ -78,6 +86,43 @@ export default function App() {
         initialRouteName = 'UserHomeScreen'
         headerMode = 'none' 
       >
+        <Stack.Screen 
+          name='LoginRegister'
+          component={LoginRegister}
+          options={{
+            headerShown : false,
+          }} 
+        />
+        <Stack.Screen
+          name='RegistrationForm'
+          options={{
+            headerTitle :'Formulir Registrasi'
+          }}
+          component={RegisFormScreenRoute}
+        />
+        <Stack.Screen
+          name='ProfileScreen'
+          options={{
+            headerTitle :'Profile'
+          }}
+          component={ProfileRoute}
+        />
+        <Stack.Screen
+          name='HomeScreen'
+          options={{
+            headerTitle :'Home'
+          }}
+          component={HomeRoute}
+        />
+        <Stack.Screen 
+          name="CollectorHome"
+          component={CollectorHomeScreen} 
+          options = {{
+            headerTitle: props => (
+                <CollectorNavbar {...props} />
+            ),
+          }}
+          />
           <Stack.Screen
             name='UserHomeScreen'
             component={UserHomeScreenRoute}

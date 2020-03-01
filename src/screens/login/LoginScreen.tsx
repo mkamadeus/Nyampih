@@ -49,7 +49,11 @@ export default class LoginScreen extends React.Component {
           />
           
         </KeyboardAvoidingView>
-        <TouchableOpacity style={styles.loginButton} activeOpacity={0.7}>
+        <TouchableOpacity 
+          style={styles.loginButton}
+          activeOpacity={0.7}
+          onPress={()=>this.props.onLogin()}  
+        >
           <View >
             <Text style={styles.buttonText}>Login</Text>
           </View>
