@@ -1,9 +1,7 @@
 import React from 'react'
-import { View, Switch } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import 'react-native-gesture-handler'
-
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
@@ -11,10 +9,13 @@ import CollectorNavbar from './src/components/partials/CollectorNavbar'
 import CollectorHomeScreen from './src/screens/collector/CollectorHomeScreen'
 import UserHomeScreen from './src/screens/user/UserHomeScreen'
 import RegisFormScreen from './src/screens/registration/RegistrationFormScreen'
-import LoginScreen from './src/screens/login/LoginScreen'
+import LoginScreeen from './src/screens/login/LoginScreen'
 import RegisterScreen from './src/screens/register/RegisterScreen'
 import ProfileScreen from './src/screens/profile/ProfileScreen'
-import UserTransactionScreen from './src/screens/user/UserTransactionScreen'
+
+import TransactionScreen from './src/screens/user/UserTransactionScreen'
+
+
 
 const fetchFont = () => {
   return Font.loadAsync({
@@ -26,19 +27,19 @@ const fetchFont = () => {
 
 const Stack = createStackNavigator();
 
-function UserScreen() {
-  return(
+function LoginRegister() {
+  return (
     <Stack.Navigator
-      initialRouteName='UserHome'
-      headerMode='none'
+      initialRouteName = 'Login'
+      headerMode = 'none'
     >
-      <Stack.Screen
-        name='UserHome'
-        component={UserHomeScreenRoute}
+      <Stack.Screen 
+        name='Login'
+        component={LoginScreenRoute}
       />
       <Stack.Screen
-        name='UserTransaction'
-        component={UserTransactionScreenRoute}
+        name='Register'
+        component={RegisterScreenRoute}
       />
     </Stack.Navigator>
   )
@@ -50,25 +51,42 @@ function LoginScreenRoute({ navigation }) {
       onPressButton={()=>navigation.navigate('LoginRegister',{screen : 'Register'})}
       onLogin={()=>navigation.navigate('CollectorHome')}
       />
-  )}
-
-function UserHomeScreenRoute ({navigation, route})
-{
-  return (
-    <UserHomeScreen stateForm={route.params} nextRoute={()=>navigation.navigate('UserTransactionScreen')} />
   )
 }
-function UserTransactionScreenRoute ({navigation, route})
-{
+
+function RegisterScreenRoute ({ navigation }) {
   return (
-    <UserTransactionScreen stateForm={route.params} backFunction={()=>navigation.goBack()} />
+    <RegisterScreen onPressButton={()=>navigation.navigate('RegistrationForm')}/>
+  )
+}
+
+function RegisFormScreenRoute ({ navigation }) {
+  let formState
+  return (
+    <RegisFormScreen onPressButton={(itemState)=>navigation.navigate('ProfileScreen',itemState)}/>
+  )
+}
+
+function ProfileRoute ({ navigation, route }) {
+  return (
+    <ProfileScreen stateForm={route.params} onPressButton={()=>navigation.navigate('UserHomeScreen')}/>
+  )
+}
+
+function HomeRoute ({ navigation, route }) {
+  return (
+    <UserHomeScreen onProceed={()=>navigation.push('TransactionScreen')}/>
+  )
+}
+
+function UserTransactionScreen ({ navigation, route }) {
+  return (
+    <TransactionScreen onButtonPress={()=>navigation.push('UserHomeScreen')}/>
   )
 }
 
 
 export default function App() {
-
-  // Font loading check
   const [dataLoaded, setDataLoaded] = React.useState(false);
 
   if(!dataLoaded) {
@@ -81,10 +99,10 @@ export default function App() {
   }
   
     return (
-      <NavigationContainer>
-        <Stack.Navigator
-        initialRouteName = 'UserHomeScreen'
-        headerMode = 'none' 
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName = 'LoginRegister'
+        headerMode = 'screen' 
       >
         <Stack.Screen 
           name='LoginRegister'
@@ -96,21 +114,26 @@ export default function App() {
         <Stack.Screen
           name='RegistrationForm'
           options={{
-            headerTitle :'Formulir Registrasi'
+            headerTitle :'Formulir Registrasi',
+            headerShown : false,
+
           }}
           component={RegisFormScreenRoute}
         />
         <Stack.Screen
           name='ProfileScreen'
           options={{
-            headerTitle :'Profile'
+            headerTitle :'Profile',
+            headerShown : false,
+
           }}
           component={ProfileRoute}
         />
         <Stack.Screen
-          name='HomeScreen'
+          name='UserHomeScreen'
           options={{
-            headerTitle :'Home'
+            headerTitle :'Home',
+            headerShown : false,
           }}
           component={HomeRoute}
         />
@@ -124,14 +147,13 @@ export default function App() {
           }}
           />
           <Stack.Screen
-            name='UserHomeScreen'
-            component={UserHomeScreenRoute}
+            name="TransactionScreen"
+            component={UserTransactionScreen}
+            options={{
+            headerShown : false,
+          }} 
           />
-          <Stack.Screen
-            name='UserTransactionScreen'
-            component={UserTransactionScreenRoute}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }

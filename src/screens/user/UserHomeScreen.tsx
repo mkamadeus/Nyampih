@@ -27,7 +27,7 @@ export default class UserHomeScreen extends React.Component<UserHomeProps, UserH
   
   render() 
   {
-    const {nextRoute} = this.props;
+    const {nextRoute} = ()=>{this.props.onProceed()};
     let {currentState, trashAmount} = this.state;
     
     const colorModes = ['#FC5667', '#07CBC9', '#FDD800'];
@@ -96,7 +96,7 @@ export default class UserHomeScreen extends React.Component<UserHomeProps, UserH
           </View>
           <View style={{paddingVertical:30}}>
             <TouchableOpacity style={{backgroundColor:'#9b26af',paddingHorizontal:72,paddingVertical:18,borderRadius:7,elevation:4}} onPress ={
-              currentState==2 ? nextRoute : (() =>{
+              currentState==2 ?(()=>this.props.onProceed()) : (() =>{
               let i = currentState+1;
               this.setState({currentState: i});
             })} >

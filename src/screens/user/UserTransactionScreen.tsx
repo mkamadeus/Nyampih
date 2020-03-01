@@ -20,13 +20,9 @@ export default class UserTransactionScreen extends React.Component<UserTransacti
     return (
       <ScrollView style={{flex:1,backgroundColor:'#fff'}}>
         <View style={{flex:1,flexDirection:'row',marginVertical:60}}>
-          <View style={{flex:1, alignItems:'center',padding:5}}>
-            <TouchableOpacity onPress={backFunction}>
-              <Ionicons name="md-arrow-back" color="#000" size={50} />
-            </TouchableOpacity>
-          </View>
-          <View style={{flex:5,padding:5}}>
-            <Text style={{fontFamily:'product-sans-bold',fontSize:35,letterSpacing:0.3}}>Transaction Details</Text>
+          <View style={{flex:5,padding:5,marginHorizontal:30,}}>
+            <Text style={{fontFamily:'product-sans-bold',fontSize:35,letterSpacing:0.3}}>Transaction</Text>
+            <Text style={{fontFamily:'product-sans-bold',fontSize:35,letterSpacing:0.3}}>Details</Text>
           </View>
         </View>
         <View style={{margin:15}}>
@@ -45,7 +41,9 @@ export default class UserTransactionScreen extends React.Component<UserTransacti
         <View style={{flex:1,flexDirection:'row'}}>
           <View style={{flex:1,flexDirection:'row',alignItems:'center',justifyContent:'center',width:'70%'}}>
             <View style={{paddingVertical:30}}>
-              <TouchableOpacity style={{backgroundColor:'#9b26af',paddingHorizontal:72,paddingVertical:18,borderRadius:7,elevation:4}}>
+              <TouchableOpacity 
+                onPress={()=>{this.props.onButtonPress()}}
+                style={{backgroundColor:'#9b26af',paddingHorizontal:72,paddingVertical:18,borderRadius:7,elevation:4}}>
                 <Text style={{fontFamily:'product-sans-regular',fontSize:16,color:'#fff'}}>Proceed</Text>
               </TouchableOpacity>
             </View>
