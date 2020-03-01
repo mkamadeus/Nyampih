@@ -5,7 +5,8 @@ import 'react-native-gesture-handler'
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
-import UserNavbar from './src/components/partials/UserNavbar'
+import CollectorNavbar from './src/components/partials/CollectorNavbar'
+import CollectorHomeScreen from './src/screens/collector/CollectorHomeScreen'
 import UserHomeScreen from './src/screens/user/UserHomeScreen'
 import RegisFormScreen from './src/screens/registration/RegistrationFormScreen'
 import LoginScreeen from './src/screens/login/LoginScreen'
@@ -91,7 +92,7 @@ export default function App() {
     return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName = 'LoginRegister'
+        initialRouteName = 'UserHomeScreen'
         headerMode = 'screen' 
       >
         <Stack.Screen 
@@ -122,6 +123,19 @@ export default function App() {
           }}
           component={HomeRoute}
         />
+        <Stack.Screen 
+          name="CollectorHome"
+          component={CollectorHomeScreen} 
+          options = {{
+            headerTitle: props => (
+                <CollectorNavbar {...props} />
+            ),
+          }}
+          />
+          <Stack.Screen
+            name="UserHomeScreen"
+            component={UserHomeScreen}
+          />
       </Stack.Navigator>
     </NavigationContainer>
   )
