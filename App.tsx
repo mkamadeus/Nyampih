@@ -132,10 +132,6 @@ export default function App() {
             ),
           }}
           />
-          <Stack.Screen
-            name="UserHomeScreen"
-            component={UserHomeScreen}
-          />
       </Stack.Navigator>
     </NavigationContainer>
   )
