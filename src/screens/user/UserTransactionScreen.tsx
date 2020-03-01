@@ -4,17 +4,24 @@ import { ScrollView, TouchableOpacity, TextInput } from 'react-native-gesture-ha
 import { Ionicons } from '@expo/vector-icons';
 import RecapBannerComponent from '../../components/user/transaction/RecapBannerComponent';
 
-export default class TransactionScreen extends React.Component {
+interface UserTransactionProps {
+  backFunction: Function
+}
+
+interface UserTransactionState {}
+
+export default class UserTransactionScreen extends React.Component<UserTransactionProps,UserTransactionState> {
   render() 
   {
     const colorModes = ['#FC5667', '#07CBC9', '#FDD800'];
     const iconModes = ['md-pizza', 'logo-dropbox', 'md-basket'];
+    const {backFunction} = this.props;
 
     return (
       <ScrollView style={{flex:1,backgroundColor:'#fff'}}>
-        <View style={{flex:1,flexDirection:'row',marginVertical:15}}>
+        <View style={{flex:1,flexDirection:'row',marginVertical:60}}>
           <View style={{flex:1, alignItems:'center',padding:5}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={backFunction}>
               <Ionicons name="md-arrow-back" color="#000" size={50} />
             </TouchableOpacity>
           </View>

@@ -6,7 +6,7 @@ import RoundButton from '../../components/user/dashboard/RoundButton';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface UserHomeProps {
-
+  nextRoute: Function,
 }
 
 interface UserHomeState {
@@ -27,6 +27,7 @@ export default class UserHomeScreen extends React.Component<UserHomeProps, UserH
   
   render() 
   {
+    const {nextRoute} = this.props;
     let {currentState, trashAmount} = this.state;
     
     const colorModes = ['#FC5667', '#07CBC9', '#FDD800'];
@@ -94,10 +95,11 @@ export default class UserHomeScreen extends React.Component<UserHomeProps, UserH
             </View>
           </View>
           <View style={{paddingVertical:30}}>
-            <TouchableOpacity style={{backgroundColor:'#9b26af',paddingHorizontal:72,paddingVertical:18,borderRadius:7,elevation:4}} onPress ={() =>{
-              let i = (currentState+1)%3;
+            <TouchableOpacity style={{backgroundColor:'#9b26af',paddingHorizontal:72,paddingVertical:18,borderRadius:7,elevation:4}} onPress ={
+              currentState==2 ? nextRoute : (() =>{
+              let i = currentState+1;
               this.setState({currentState: i});
-            }} >
+            })} >
               <Text style={{fontFamily:'product-sans-regular',fontSize:16,color:'#fff'}}>Proceed</Text>
             </TouchableOpacity>
           </View>
